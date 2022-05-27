@@ -6,6 +6,7 @@ const NavBar = () => {
     const router = useRouter()
 
     useEffect(() => {
+        
         console.log(router)
     }, [router])
 
