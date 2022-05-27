@@ -1,6 +1,14 @@
 {
-    "editor.codeActionsOnSave": {
-        "source.fixAll": true,
-        "source.fixAll.eslint": true
-    },
+	"editor.formatOnSave": true,
+	"[javascript]": {
+		"editor.formatOnSave": false
+	},
+	// "eslint.autoFixOnSave": true,
+	// "prettier.disableLanguages": ["js"],
+	"eslint.alwaysShowStatus": true,
+	"files.autoSave": "onFocusChange",
+	"editor.codeActionsOnSave": {
+		"source.fixAll.eslint": true
+	},
+	"window.zoomLevel": -1
 }
