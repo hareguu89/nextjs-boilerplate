@@ -2,6 +2,8 @@ import { useState } from 'react'
 import type { NextPage } from 'next'
 import Head from 'next/head'
 import styles from '../styles/Home.module.css'
+import { useRecoilState } from 'recoil'
+
 const Home: NextPage = () => {
 	const [counter, setCoutner] = useState(0)
 

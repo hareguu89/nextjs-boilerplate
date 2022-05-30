@@ -6,9 +6,15 @@
 	// "eslint.autoFixOnSave": true,
 	// "prettier.disableLanguages": ["js"],
 	"eslint.alwaysShowStatus": true,
-	"files.autoSave": "onFocusChange",
+	// "files.autoSave": "onFocusChange",
 	"editor.codeActionsOnSave": {
 		"source.fixAll.eslint": true
 	},
-	"window.zoomLevel": -1
+	"window.zoomLevel": -1,
+	"prettier/prettier": [
+		"error",
+		{
+		  "endOfLine": "auto",
+		}
+	  ]
 }
