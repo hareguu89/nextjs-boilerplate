@@ -1,8 +1,8 @@
 import { ChangeEvent, useEffect, useState } from 'react'
 import type { NextPage } from 'next'
-import styles from '../styles/Home.module.css'
 import styled from 'styled-components'
 import Seo from '@components/seo'
+import axios from 'axios'
 
 const Home: NextPage = (): JSX.Element => {
 	const [counter, setCoutner] = useState<number>(0)
@@ -14,21 +14,26 @@ const Home: NextPage = (): JSX.Element => {
 		setInputTest(value)
 	}
 
+	const fetchFruit = async () => {
+		const data = await axios.get('http://localhost:3000/fruit')
+		console.log(data)
+	}
+
 	return (
 		<>
 			<Seo title={'Home'} />
-			<div className={styles.container}>
+			<div>
 				{counter}
-				<button onClick={() => setCoutner((pre) => pre + 1)}> click </button>
-				<Input type="text" value={inputTest} onChange={changeEvent} />
+				<button onClick={fetchFruit}> click </button>
+				<input type="text" value={inputTest} onChange={changeEvent} />
 				{inputTest}
 			</div>
 		</>
 	)
 }
 
-const Input = styled.input`
-	padding: 10px;
-`
+// const Input = styled.input`
+// 	padding: 10px;
+// `
 
 export default Home

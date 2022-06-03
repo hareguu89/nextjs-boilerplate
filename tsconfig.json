@@ -22,7 +22,8 @@
 			"@components/*": ["./src/components/*"],
 			"@containers/*": ["./src/containers/*"],
 			"@common/*": ["./src/common/*"],
-			"@store/*": ["./src/store/*"]
+			"@store/*": ["./src/store/*"],
+			"@mocks/*": ["./src/mocks/*"],
 		},
 		"forceConsistentCasingInFileNames": true,
 		"noEmit": true,
