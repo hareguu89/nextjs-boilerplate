@@ -25,15 +25,15 @@ const Home: NextPage = (): JSX.Element => {
 			<div>
 				{counter}
 				<button onClick={fetchFruit}> click </button>
-				<input type="text" value={inputTest} onChange={changeEvent} />
+				<Input type="text" value={inputTest} onChange={changeEvent} />
 				{inputTest}
 			</div>
 		</>
 	)
 }
 
-// const Input = styled.input`
-// 	padding: 10px;
-// `
+const Input = styled.input`
+	padding: 10px;
+`
 
 export default Home
