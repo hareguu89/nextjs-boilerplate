@@ -3,7 +3,11 @@ if (typeof window === 'undefined') {
 	server.then((s) => s.server.listen())
 } else {
 	const worker = import('./browser')
-	worker.then((w) => w.worker.start())
+	worker.then((w) =>
+		w.worker.start({
+			onUnhandledRequest: 'bypass',
+		}),
+	)
 }
 
 export {}
