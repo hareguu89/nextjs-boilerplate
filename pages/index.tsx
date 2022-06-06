@@ -2,17 +2,19 @@ import { ChangeEvent, useEffect, useState } from 'react'
 import type { NextPage } from 'next'
 import styled from 'styled-components'
 import Seo from '@components/seo'
-import axios from 'axios'
+import axios, { AxiosResponse } from 'axios'
 
 const Home: NextPage = (): JSX.Element => {
 	const [counter, setCoutner] = useState<number>(0)
-	const [inputTest, setInputTest] = useState<string>('')
+	const [fruits, setfruits] = useState<string[] | []>([])
 
-	const changeEvent = ({
-		target: { value },
-	}: ChangeEvent<HTMLInputElement>): void => {
-		setInputTest(value)
-	}
+	useEffect(() => {
+		// eslint-disable-next-line prettier/prettier
+		(async () => {
+			const { data } = await axios.get('http://localhost:3000/fruit')
+			setfruits(data)
+		})()
+	}, [])
 
 	const fetchFruit = async () => {
 		const data = await axios.get('http://localhost:3000/fruit')
@@ -23,10 +25,17 @@ const Home: NextPage = (): JSX.Element => {
 		<>
 			<Seo title={'Home'} />
 			<div>
-				{counter}
+				count : {counter}
 				<button onClick={fetchFruit}> click </button>
-				<Input type="text" value={inputTest} onChange={changeEvent} />
-				{inputTest}
+			</div>
+			<div>
+				{fruits ? (
+					fruits.map((fruit: string, index: number) => {
+						return <div key={index}>{fruit}</div>
+					})
+				) : (
+					<div> Loading... </div>
+				)}
 			</div>
 		</>
 	)
