@@ -2,10 +2,11 @@ import { ChangeEvent, useEffect, useState } from 'react'
 import type { NextPage } from 'next'
 import styled from 'styled-components'
 import Seo from '@components/seo'
+import Sidebar from '@components/Sidebar'
 import axios, { AxiosResponse } from 'axios'
 
 const Home: NextPage = (): JSX.Element => {
-	const [counter, setCoutner] = useState<number>(0)
+	const [counter, setCounter] = useState<number>(0)
 	const [fruits, setfruits] = useState<string[] | []>([])
 
 	useEffect(() => {
@@ -26,7 +27,7 @@ const Home: NextPage = (): JSX.Element => {
 			<Seo title={'Home'} />
 			<div>
 				count : {counter}
-				<button onClick={fetchFruit}> click </button>
+				<button onClick={() => setCounter((pre) => pre + 1)}> click </button>
 			</div>
 			<div>
 				{fruits ? (
@@ -37,6 +38,7 @@ const Home: NextPage = (): JSX.Element => {
 					<div> Loading... </div>
 				)}
 			</div>
+			<Sidebar />
 		</>
 	)
 }
