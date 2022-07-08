@@ -2,8 +2,8 @@ import { useEffect, useRef } from 'react'
 import Atoms from '@components/Atoms'
 import Molecules from '@components/molecules'
 import { useForm, SubmitHandler } from 'react-hook-form'
-import { useMutation } from 'react-query'
 import { login, Mutation } from '../src/services'
+import { useMutation } from 'react-query'
 import styled from 'styled-components'
 
 type TUser = {
@@ -20,6 +20,7 @@ const Login = () => {
 		handleSubmit,
 		formState: { errors },
 	} = useForm<TUser>()
+
 	const emailRef = useRef<HTMLInputElement | null>(null)
 	const { ref, ...rest } = register('email', {
 		required: true,
@@ -43,7 +44,7 @@ const Login = () => {
 					height="100%"
 					gap="20px"
 				>
-					<Atoms.Div color="hive-white" fontSize="sm">
+					<Atoms.Div color="white" fontSize="sm">
 						이메일
 					</Atoms.Div>
 					<Atoms.Input
@@ -59,7 +60,7 @@ const Login = () => {
 					<Molecules.ErrorForm>
 						{errors.email && '이메일 형식이 아닙니다.'}
 					</Molecules.ErrorForm>
-					<Atoms.Div color="hive-white" fontSize="sm">
+					<Atoms.Div color="white" fontSize="sm">
 						비밀번호
 					</Atoms.Div>
 					<Atoms.Input

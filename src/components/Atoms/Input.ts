@@ -3,8 +3,8 @@ import Theme from '../../../styles/Theme'
 
 const designList = {
 	submit: `
-    color: ${Theme.colours['hive-bluegray-800']};
-    background: ${Theme.colours['hive-teal-500']};
+    color: ${Theme.colours['bluegray-800']};
+    background: ${Theme.colours['teal-500']};
     cursor: pointer;
     border-radius: 0.3125rem;
     font-weight: bold;
