@@ -2,7 +2,7 @@ import { useEffect, useRef } from 'react'
 import Atoms from '@components/Atoms'
 import Molecules from '@components/molecules'
 import { useForm, SubmitHandler } from 'react-hook-form'
-import { login, Mutation } from '../src/services'
+import { login, Mutation } from '../../src/services'
 import { useMutation } from 'react-query'
 import styled from 'styled-components'
 
@@ -11,7 +11,7 @@ type TUser = {
 	password: string
 }
 
-const Login = () => {
+const Login = ({ data }: any) => {
 	// https://react-query.tanstack.com/reference/useMutation
 	const { mutateAsync } = useMutation(login, Mutation)
 
@@ -31,6 +31,7 @@ const Login = () => {
 
 	useEffect(() => {
 		emailRef.current?.focus()
+		console.log(data)
 	}, [])
 
 	return (
@@ -77,6 +78,16 @@ const Login = () => {
 			</Form>
 		</>
 	)
+}
+
+export async function getServerSideProps() {
+	// 서버로 API 요청
+	// const res = await fetch(`https://.../data`)
+	// const data = await res.json()
+	const data = 'hello'
+
+	// Page 컴포넌트로 data 전달
+	return { props: { data } }
 }
 
 export default Login

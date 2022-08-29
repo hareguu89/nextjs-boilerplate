@@ -6,13 +6,15 @@ import { ReactQueryDevtools } from 'react-query/devtools'
 import { ThemeProvider } from 'styled-components'
 import defaultTheme from 'styles/Theme'
 import GlobalStyles from 'styles/GlobalStyles'
-
-if (process.env.NEXT_PUBLIC_API_MOCKING === 'enabled') {
-	import('@mocks/index')
-}
+import { useEffect } from 'react'
 
 const MyApp = ({ Component, pageProps }: AppProps) => {
 	const queryClient = new QueryClient()
+	useEffect(() => {
+		if (process.env.NEXT_PUBLIC_API_MOCKING === 'enabled')
+			import('@mocks/index')
+	}, [])
+
 	return (
 		<>
 			<QueryClientProvider client={queryClient}>
