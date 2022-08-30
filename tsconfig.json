@@ -6,6 +6,12 @@
 		"jsx": "preserve",
 		"allowJs": false,
 		"strict": true,
+		"strictNullChecks": true,
+		"strictFunctionTypes": true,
+		"strictBindCallApply": true,
+		"strictPropertyInitialization": true,
+		"noImplicitThis": true,
+		"alwaysStrict": true,
 		"moduleResolution": "node",
 		"allowSyntheticDefaultImports": true,
 		"noUnusedLocals": true,
@@ -44,5 +50,5 @@
 		"**/*.test.tsx",
 		"coverage"
 	],
-	"include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"]
+	"include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "**/**/*.tsx", "**/**/*.ts", "src", "pages"]
 }
