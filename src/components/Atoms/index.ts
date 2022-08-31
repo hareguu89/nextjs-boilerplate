@@ -1,5 +1,5 @@
-import Input from './Input'
-import Div from './Div'
-import Button from './Button'
+import Button from "./Button";
+import Div from "./Div";
+import Input from "./Input";
 
-export default { Input, Div, Button }
+export default { Input, Div, Button };

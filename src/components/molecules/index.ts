@@ -1,3 +1,3 @@
-import ErrorForm from './ErrorForm'
+import ErrorForm from "./ErrorForm";
 
-export default { ErrorForm }
+export default { ErrorForm };

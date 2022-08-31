@@ -1,5 +1,5 @@
 const PortfolioPage = () => {
-	return <div> portfolio page</div>
-}
+  return <div> portfolio page</div>;
+};
 
-export default PortfolioPage
+export default PortfolioPage;
