@@ -15,3 +15,9 @@
 
 ## What different btw React and Nextjs?
 - Initial 'index.html' is not existed in public folder. Bc, 'Nextjs' allows us to determine When a page should be pre-rendered.
+
+
+## Page Pre-Rendering
+- Two form of pre-rendering
+- Static Generation: during build, all Page is pre-rendered 
+- Server-side Rendering: pages are created just in time after deployment when the requestment reach the server
