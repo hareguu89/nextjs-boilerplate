@@ -5,5 +5,5 @@ export interface IDummyBackend {
 }
 
 export interface IResponse {
-	products?: IDummyBackend[];
+	products: IDummyBackend[];
 }

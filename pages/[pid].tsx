@@ -1,7 +1,7 @@
 import fs from 'fs/promises';
 import path from 'path';
 import { GetStaticProps, InferGetStaticPropsType } from 'next';
-import { IDummyBackend } from 'types';
+import { IDummyBackend, IResponse } from 'types';
 // import { useEffect } from 'react';
 
 const ProductDetailPage = ({
@@ -26,13 +26,15 @@ export const getStaticProps: GetStaticProps = async (context) => {
 	const { params } = context;
 	const productId = params?.pid;
 
-	const filePath = path.join(process.cwd(), 'data', 'dummy-backend.json');
-	const readFile = await fs.readFile(filePath);
-	const data = JSON.parse(readFile.toString());
+	const data = await getData();
 
 	const product = data.products.find(
 		(product: IDummyBackend) => product.id === productId,
 	);
+
+	if (!product) {
+		return { notFound: true };
+	}
 
 	return {
 		props: {
@@ -41,9 +43,21 @@ export const getStaticProps: GetStaticProps = async (context) => {
 	};
 };
 
+const getData = async (): Promise<IResponse> => {
+	const filePath = path.join(process.cwd(), 'data', 'dummy-backend.json');
+	const readFile = await fs.readFile(filePath);
+	const data = JSON.parse(readFile.toString());
+	return data;
+};
+
 export const getStaticPaths = async () => {
+	const data = await getData();
+	const ids = data.products.map((product: IDummyBackend) => product.id);
+	const pathWithIds = ids.map((id: string) => ({
+		params: { pid: id },
+	}));
 	return {
-		paths: [{ params: { pid: 'p1' } }],
+		paths: pathWithIds,
 		fallback: true,
 	};
 };
