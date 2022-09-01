@@ -1,5 +1,5 @@
-import { createGlobalStyle } from 'styled-components'
-import reset from 'styled-reset'
+import { createGlobalStyle } from 'styled-components';
+import reset from 'styled-reset';
 
 const globalStyles = createGlobalStyle`
     ${reset};
@@ -16,6 +16,6 @@ const globalStyles = createGlobalStyle`
         color: black;
         background-color: #1a202c;
     }
-`
+`;
 
-export default globalStyles
+export default globalStyles;

@@ -1,15 +1,15 @@
-import { DefaultTheme } from 'styled-components'
+import { DefaultTheme } from 'styled-components';
 
-const rootFontSize = 16
+const rootFontSize = 16;
 /**
  *
  * @param {Number} px
  * @returns {string}
  */
 const convertPixelToRem = (px: number): string => {
-	const rem = px / rootFontSize
-	return rem.toString() + 'rem'
-}
+	const rem = px / rootFontSize;
+	return rem.toString() + 'rem';
+};
 
 const colours = {
 	white: '#ffffff',
@@ -62,13 +62,13 @@ const colours = {
 	'dark-mode-100': 'rgba(255, 255, 255, 0.1)',
 	'dark-mode-200': 'rgba(255, 255, 255, 0.25)',
 	'dark-mode-300': 'rgba(240, 116, 116, 0.2)',
-}
+};
 
 const borderRadius = {
 	xsr: convertPixelToRem(3),
 	smd: convertPixelToRem(5),
 	mlg: convertPixelToRem(10),
-}
+};
 
 const fontSize = {
 	xxs: convertPixelToRem(10),
@@ -79,12 +79,12 @@ const fontSize = {
 	xl: convertPixelToRem(20),
 	'2xl': convertPixelToRem(24),
 	'3xl': convertPixelToRem(30),
-}
+};
 
 const defaultTheme: DefaultTheme = {
 	fontSize,
 	colours,
 	borderRadius,
-}
+};
 
-export default defaultTheme
+export default defaultTheme;

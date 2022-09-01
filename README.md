@@ -21,3 +21,19 @@
 - Two form of pre-rendering
 - Static Generation: during build, all Page is pre-rendered 
 - Server-side Rendering: pages are created just in time after deployment when the requestment reach the server
+
+## Pre-Generated Paths (Routes)
+- Dynamic pages ([id].ts etc) don't just need data: u also need to know whice [id] values will be available.
+- Multiple concrete [id] page instances (e.g id = 1, id = 2 etc) are pre-Generated
+``` js
+ export const getStaticProps: GetStaticProps = (context) => {
+    .....
+    return {
+        props: { ... },
+        redirect: '/',
+        notFound: true, // boolean,
+        revalidate: 10 // sec
+    }
+ }
+ export const getStaticPaths() {}
+```

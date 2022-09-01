@@ -2,7 +2,7 @@ import styled, { CSSProperties } from 'styled-components';
 import Theme from '../../../styles/Theme';
 
 const designList = {
-  submit: `
+	submit: `
     color: ${Theme.colours['bluegray-800']};
     background: ${Theme.colours['teal-500']};
     cursor: pointer;
@@ -15,33 +15,33 @@ const designList = {
 export type TDesignType = 'submit';
 
 export default styled.input<CSSProperties & { designType?: TDesignType }>`
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  appearance: none;
+	-webkit-appearance: none;
+	-moz-appearance: none;
+	appearance: none;
 
-  margin: ${({ margin }) => margin};
-  padding: ${({ padding }) => padding || '8px'};
-  line-height: ${({ lineHeight }) => lineHeight};
-  height: ${({ height }) => height || '40px'};
-  width: ${({ width }) => width || '100%'};
-  border: ${({ border }) => border};
-  box-sizing: border-box;
+	margin: ${({ margin }) => margin};
+	padding: ${({ padding }) => padding || '8px'};
+	line-height: ${({ lineHeight }) => lineHeight};
+	height: ${({ height }) => height || '40px'};
+	width: ${({ width }) => width || '100%'};
+	border: ${({ border }) => border};
+	box-sizing: border-box;
 
-  border-radius: ${({ borderRadius, theme }) =>
-    borderRadius && theme.borderRadius[borderRadius]};
-  font-size: ${({ fontSize, theme }) =>
-    fontSize ? theme.fontSize[fontSize] : theme.fontSize['base']};
-  background-color: ${({ backgroundColor, theme }) =>
-    backgroundColor && theme.colours[backgroundColor]};
+	border-radius: ${({ borderRadius, theme }) =>
+		borderRadius && theme.borderRadius[borderRadius]};
+	font-size: ${({ fontSize, theme }) =>
+		fontSize ? theme.fontSize[fontSize] : theme.fontSize['base']};
+	background-color: ${({ backgroundColor, theme }) =>
+		backgroundColor && theme.colours[backgroundColor]};
 
-  ${({ designType }) => designType && designList[designType]}
+	${({ designType }) => designType && designList[designType]}
 
-  cursor: ${({ cursor }) => cursor};
+	cursor: ${({ cursor }) => cursor};
 
-  :focus {
-    outline: none;
-  }
-  ::placeholder {
-    color: var(--grey-300);
-  }
+	:focus {
+		outline: none;
+	}
+	::placeholder {
+		color: var(--grey-300);
+	}
 `;

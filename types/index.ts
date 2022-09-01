@@ -1,8 +1,9 @@
 export interface IDummyBackend {
-  id: string;
-  title: string;
+	id: string;
+	title: string;
+	description: string;
 }
 
 export interface IResponse {
-  products: IDummyBackend[];
+	products?: IDummyBackend[];
 }
