@@ -37,3 +37,16 @@
  }
  export const getStaticPaths() {}
 ```
+
+
+
+## Clent side fetching
+#### Some data doesnt need to be pre-rendering
+1. Data changeing with high frequency (e.g stock market)
+2. Highly user specific data (e.g last order in an online shop)
+3. Partial data (e.g data that's only used on a apart of an page)
+
+- Pre-fetchng the data for page generation might not work or be required
+- "Traditional" client-side fetching (e.g useEffect() with fetch() is fine)
+
+
