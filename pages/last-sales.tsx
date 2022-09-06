@@ -1,9 +1,16 @@
-import { NextPage } from 'next';
-import { AxiosError } from 'axios';
+import { GetStaticProps } from 'next';
 import { useQuery } from 'react-query';
+import axios, { AxiosError } from 'axios';
+import { useEffect, useState } from 'react';
+import { ITransformedSales } from '../types';
 import { getLastSales } from '../src/services/';
 
-const LastSales: NextPage = () => {
+interface IProps {
+	transformedSales: ITransformedSales[];
+}
+
+const LastSales = ({ transformedSales }: IProps) => {
+	const [sales, setSales] = useState<ITransformedSales[]>(transformedSales);
 	const { isLoading, isError, data, error } = useQuery(
 		['last-sales'],
 		getLastSales,
@@ -18,21 +25,65 @@ const LastSales: NextPage = () => {
 			},
 		},
 	);
+	useEffect(() => {
+		if (data) {
+			console.log(data);
+			const transformedSales: ITransformedSales[] = [];
+			for (const key in data) {
+				transformedSales.push({
+					id: key,
+					username: data[key]?.username,
+					volume: data[key]?.volume,
+				});
+			}
+			setSales(transformedSales);
+		}
+	}, [data]);
 
 	if (isLoading) {
 		return <span>Loading...</span>;
 	}
 
-	if (isError) {
+	if (isError && !data) {
 		return <span>Error: {error.message}</span>;
 	}
 
 	return (
 		<ul>
 			{isLoading && <p>Loading...</p>}
-			{data && data.map((sale, index) => <li key={index}>{sale.id}</li>)}
+			{sales && sales.map((sale, index) => <li key={index}>{sale.id}</li>)}
 		</ul>
 	);
 };
 
+export const getStaticProps: GetStaticProps = async () => {
+	const { data } = await axios.get(
+		`https://nextjs-dummy-9be3f-default-rtdb.firebaseio.com/sales.json`,
+	);
+	const transformedSales: ITransformedSales[] = [];
+	for (const key in data) {
+		transformedSales.push({
+			id: key,
+			username: data[key]?.username,
+			volume: data[key]?.volume,
+		});
+	}
+
+	if (!transformedSales.length) {
+		return {
+			notFound: true,
+		};
+	}
+	return {
+		props: {
+			transformedSales: transformedSales,
+		},
+		revalidate: 10,
+	};
+};
+
 export default LastSales;
+
+// ## Client-side pre-rendering
+// pre-fetching 된 아이템으로 pre-rendering이 가능하려면
+// getStaticProps 로 pre-fetching 해주어야 한다.
