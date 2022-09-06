@@ -14,23 +14,9 @@ export const Mutation = {
 	},
 };
 
-interface ITransformedSales {
-	id: string;
-	username: string;
-	volume: number;
-}
-export async function getLastSales() {
+export const getLastSales = async () => {
 	const { data } = await axios.get(
 		`https://nextjs-dummy-9be3f-default-rtdb.firebaseio.com/sales.json`,
 	);
-
-	const transformedSales: ITransformedSales[] = [];
-	for (const key in data) {
-		transformedSales.push({
-			id: key,
-			username: data[key]?.username,
-			volume: data[key]?.volume,
-		});
-	}
-	return transformedSales;
-}
+	return data;
+};

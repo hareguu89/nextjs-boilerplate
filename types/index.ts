@@ -7,3 +7,9 @@ export interface IDummyBackend {
 export interface IResponse {
 	products: IDummyBackend[];
 }
+
+export interface ITransformedSales {
+	id: string;
+	username: string;
+	volume: number;
+}
