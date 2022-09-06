@@ -1,9 +1,9 @@
-import { ReactNode } from 'react'
-import Atoms from '@components//Atoms'
-import styled from 'styled-components'
+import { ReactNode } from 'react';
+import Atoms from '@components//Atoms';
+import styled from 'styled-components';
 
 interface IError {
-	children: ReactNode
+	children: ReactNode;
 }
 
 const ErrorForm = ({ children }: IError) => {
@@ -17,11 +17,11 @@ const ErrorForm = ({ children }: IError) => {
 				<FakeBox>&nbsp;</FakeBox>
 			)}
 		</>
-	)
-}
+	);
+};
 
-export default ErrorForm
+export default ErrorForm;
 
 const FakeBox = styled.div`
 	height: 12px;
-`
+`;

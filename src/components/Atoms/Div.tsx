@@ -1,4 +1,4 @@
-import styled from 'styled-components'
+import styled from 'styled-components';
 
 const Div = styled.div<React.CSSProperties>`
 	${({ display }) => display && `display : ${display}`};
@@ -27,7 +27,7 @@ const Div = styled.div<React.CSSProperties>`
 	${({ marginBottom }) => marginBottom && `margin-bottom : ${marginBottom}`};
 	${({ marginLeft }) => marginLeft && `margin-left : ${marginLeft}`};
 	padding: ${({ padding }) => {
-		return padding
+		return padding;
 	}};
 	${({ paddingTop }) => paddingTop && `padding-top : ${paddingTop}`};
 	${({ paddingRight }) => paddingRight && `padding-right : ${paddingRight}`};
@@ -63,6 +63,6 @@ const Div = styled.div<React.CSSProperties>`
 	z-index: ${({ zIndex }) => zIndex};
 	animation: ${({ animation }) => animation};
 	transform: ${({ transform }) => transform};
-`
+`;
 
-export default Div
+export default Div;

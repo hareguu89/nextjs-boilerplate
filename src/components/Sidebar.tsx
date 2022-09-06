@@ -3,7 +3,7 @@ const Sidebar = () => {
 		<>
 			<div>iam, sidebar</div>
 		</>
-	)
-}
+	);
+};
 
-export default Sidebar
+export default Sidebar;

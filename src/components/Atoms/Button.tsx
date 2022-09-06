@@ -1,18 +1,18 @@
-import { CSSProperties } from 'react'
-import styled from 'styled-components'
+import { CSSProperties } from 'react';
+import styled from 'styled-components';
 
 const designList = {
 	submit: `
     color: #2D3748;
     background: #38B2AC;
   `,
-}
+};
 
-export type TDesignType = 'submit'
+export type TDesignType = 'submit';
 
 export default styled.button<
 	CSSProperties & {
-		designType?: TDesignType
+		designType?: TDesignType;
 	}
 >`
 	cursor: pointer;
@@ -30,4 +30,4 @@ export default styled.button<
 		outline: 0;
 		-webkit-appearance: none;
 	}
-`
+`;

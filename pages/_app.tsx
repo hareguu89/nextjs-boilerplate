@@ -1,19 +1,14 @@
-import type { AppProps } from 'next/app'
-import { RecoilRoot } from 'recoil'
-import { Layout } from '@components/layout'
-import { QueryClientProvider, QueryClient } from 'react-query'
-import { ReactQueryDevtools } from 'react-query/devtools'
-import { ThemeProvider } from 'styled-components'
-import defaultTheme from 'styles/Theme'
-import GlobalStyles from 'styles/GlobalStyles'
-import { useEffect } from 'react'
+import type { AppProps } from 'next/app';
+import { RecoilRoot } from 'recoil';
+import { Layout } from '@components/layout';
+import { QueryClientProvider, QueryClient } from 'react-query';
+import { ReactQueryDevtools } from 'react-query/devtools';
+import { ThemeProvider } from 'styled-components';
+import defaultTheme from 'styles/Theme';
+import GlobalStyles from 'styles/GlobalStyles';
 
 const MyApp = ({ Component, pageProps }: AppProps) => {
-	const queryClient = new QueryClient()
-	useEffect(() => {
-		if (process.env.NEXT_PUBLIC_API_MOCKING === 'enabled')
-			import('@mocks/index')
-	}, [])
+	const queryClient = new QueryClient();
 
 	return (
 		<>
@@ -29,7 +24,7 @@ const MyApp = ({ Component, pageProps }: AppProps) => {
 				</RecoilRoot>
 			</QueryClientProvider>
 		</>
-	)
-}
+	);
+};
 
-export default MyApp
+export default MyApp;

@@ -1,38 +1,38 @@
-import { useEffect, useRef } from 'react'
-import Atoms from '@components/Atoms'
-import Molecules from '@components/molecules'
-import { useForm, SubmitHandler } from 'react-hook-form'
-import { login, Mutation } from '../../src/services'
-import { useMutation } from 'react-query'
-import styled from 'styled-components'
+import { useEffect, useRef } from 'react';
+import Atoms from '@components/Atoms';
+import Molecules from '@components/molecules';
+import { useForm, SubmitHandler } from 'react-hook-form';
+import { login, Mutation } from '../../src/services';
+import { useMutation } from 'react-query';
+import styled from 'styled-components';
 
 type TUser = {
-	email: string
-	password: string
-}
+	email: string;
+	password: string;
+};
 
-const Login = ({ data }: any) => {
+const Login = () => {
 	// https://react-query.tanstack.com/reference/useMutation
-	const { mutateAsync } = useMutation(login, Mutation)
+	const { mutateAsync } = useMutation(login, Mutation);
 
 	const {
 		register,
 		handleSubmit,
 		formState: { errors },
-	} = useForm<TUser>()
+	} = useForm<TUser>();
 
-	const emailRef = useRef<HTMLInputElement | null>(null)
+	const emailRef = useRef<HTMLInputElement | null>(null);
 	const { ref, ...rest } = register('email', {
 		required: true,
 		pattern: /^\S+@\S+$/i,
-	})
+	});
 
-	const OnSubmit: SubmitHandler<TUser> = (auth) => mutateAsync(auth)
+	const OnSubmit: SubmitHandler<TUser> = (auth) => mutateAsync(auth);
 
 	useEffect(() => {
-		emailRef.current?.focus()
-		console.log(data)
-	}, [])
+		emailRef.current?.focus();
+		// console.log(data);
+	}, []);
 
 	return (
 		<>
@@ -51,8 +51,8 @@ const Login = ({ data }: any) => {
 					<Atoms.Input
 						{...rest}
 						ref={(e) => {
-							ref(e)
-							emailRef.current = e
+							ref(e);
+							emailRef.current = e;
 						}}
 						type="email"
 						placeholder="이메일을 입력해주세요."
@@ -77,20 +77,20 @@ const Login = ({ data }: any) => {
 				</Atoms.Div>
 			</Form>
 		</>
-	)
-}
+	);
+};
 
 export async function getServerSideProps() {
 	// 서버로 API 요청
 	// const res = await fetch(`https://.../data`)
 	// const data = await res.json()
-	const data = 'hello'
+	const data = 'hello';
 
 	// Page 컴포넌트로 data 전달
-	return { props: { data } }
+	return { props: { data } };
 }
 
-export default Login
+export default Login;
 
 const Form = styled.form`
 	width: 100%;
@@ -101,4 +101,4 @@ const Form = styled.form`
 	padding: 20rem;
 	letter-spacing: -0.05em;
 	height: 40rem;
-`
+`;

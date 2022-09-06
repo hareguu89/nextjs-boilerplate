@@ -1,5 +1,5 @@
-import styled, { CSSProperties } from 'styled-components'
-import Theme from '../../../styles/Theme'
+import styled, { CSSProperties } from 'styled-components';
+import Theme from '../../../styles/Theme';
 
 const designList = {
 	submit: `
@@ -10,9 +10,9 @@ const designList = {
     font-weight: bold;
     height: 68px;
   `,
-}
+};
 
-export type TDesignType = 'submit'
+export type TDesignType = 'submit';
 
 export default styled.input<CSSProperties & { designType?: TDesignType }>`
 	-webkit-appearance: none;
@@ -44,4 +44,4 @@ export default styled.input<CSSProperties & { designType?: TDesignType }>`
 	::placeholder {
 		color: var(--grey-300);
 	}
-`
+`;

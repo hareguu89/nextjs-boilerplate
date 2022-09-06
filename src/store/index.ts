@@ -1,15 +1,15 @@
-import type { RecoilState } from 'recoil'
+import type { RecoilState } from 'recoil';
 import {
-	RecoilRoot,
+	//   RecoilRoot,
 	atom,
-	selector,
-	useRecoilState,
-	useRecoilValue,
-} from 'recoil'
+	//   selector,
+	//   useRecoilState,
+	//   useRecoilValue,
+} from 'recoil';
 
 interface IRoot {
-	spinner: boolean
-	login?: boolean
+	spinner: boolean;
+	login?: boolean;
 }
 
 export const Root: RecoilState<IRoot> = atom<IRoot>({
@@ -17,4 +17,4 @@ export const Root: RecoilState<IRoot> = atom<IRoot>({
 	default: {
 		spinner: false,
 	},
-})
+});

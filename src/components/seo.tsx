@@ -1,7 +1,7 @@
-import Head from 'next/head'
+import Head from 'next/head';
 
 interface IProps {
-	title: string
+	title: string;
 }
 
 export const Seo = ({ title }: IProps) => {
@@ -11,7 +11,7 @@ export const Seo = ({ title }: IProps) => {
 				<title>{title} | Nextjs BoilerPlate</title>
 			</Head>
 		</>
-	)
-}
+	);
+};
 
-export default Seo
+export default Seo;
