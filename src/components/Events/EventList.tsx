@@ -9,6 +9,10 @@ interface Iunknown {
 const EventList = (props: Iunknown) => {
   const { items } = props;
 
+  if (!props.items) {
+    return <div>loading...</div>;
+  }
+
   return (
     <>
       <Item>

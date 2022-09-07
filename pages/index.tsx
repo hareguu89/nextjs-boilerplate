@@ -1,12 +1,20 @@
-import type { NextPage } from "next";
+import { useState, useEffect } from "react";
+import type { GetStaticProps, NextPage } from "next";
 import Link from "next/link";
-import EventList from "@components/EventList";
+import EventList from "@components/Events/EventList";
 import Seo from "@components/Seo";
 import Sidebar from "@components/Sidebar";
-import { getFeaturedEvents } from "dummy-data";
+import { getFeaturedEvents } from "helpers/api-utils";
+import type { IDummy } from "type";
 
-const Home: NextPage = () => {
-  const featuredEvent = getFeaturedEvents();
+interface IProps {
+  featuredEvents: IDummy[];
+}
+
+const Home = (props: IProps) => {
+  const [featuredEvent, setFeatureEvent] = useState<IDummy[]>(
+    props.featuredEvents,
+  );
 
   return (
     <>
@@ -16,6 +24,18 @@ const Home: NextPage = () => {
       <EventList items={featuredEvent} />
     </>
   );
+};
+
+export const getStaticProps: GetStaticProps = async () => {
+  const featuredEvents = await getFeaturedEvents();
+
+  if (!featuredEvents.length) {
+    return { notFound: true };
+  }
+
+  return {
+    props: { featuredEvents },
+  };
 };
 
 export default Home;
