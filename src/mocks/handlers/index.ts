@@ -1,3 +1,3 @@
-import * as fruitHandlers from '@mocks/handlers/fruit'
+import * as fruitHandlers from "@mocks/handlers/fruit";
 
-export const handlers = [...Object.values(fruitHandlers)]
+export const handlers = [...Object.values(fruitHandlers)];
