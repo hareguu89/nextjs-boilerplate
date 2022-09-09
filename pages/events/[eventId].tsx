@@ -11,7 +11,7 @@ interface IProps {
 
 const EventPage = ({ selectedEvent }: IProps) => {
   if (!selectedEvent) {
-    return <p>No event found</p>;
+    return <div>loading...</div>;
   }
 
   return (
@@ -54,7 +54,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
 
   return {
     paths,
-    fallback: false,
+    fallback: "blocking",
   };
 };
 

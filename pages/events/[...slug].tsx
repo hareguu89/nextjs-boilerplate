@@ -23,14 +23,14 @@ function FilteredEventsPage() {
 
   if (numYear > 2030 || numYear < 2021 || numMonth < 1 || numMonth > 12) {
     return (
-      <Fragment>
+      <>
         <ErrorAlert>
           <p>Invalid filter. Please adjust your values!</p>
         </ErrorAlert>
         <div className="center">
           <Button link="/events">Show All Events</Button>
         </div>
-      </Fragment>
+      </>
     );
   }
 
@@ -41,24 +41,24 @@ function FilteredEventsPage() {
 
   if (!filteredEvents || filteredEvents.length === 0) {
     return (
-      <Fragment>
+      <>
         <ErrorAlert>
           <p>No events found for the chosen filter!</p>
         </ErrorAlert>
         <div className="center">
           <Button link="/events">Show All Events</Button>
         </div>
-      </Fragment>
+      </>
     );
   }
 
   const date = new Date(numYear, numMonth - 1);
 
   return (
-    <Fragment>
+    <>
       <ResultsTitle date={date} />
       <EventList items={filteredEvents} />
-    </Fragment>
+    </>
   );
 }
 
