@@ -11,7 +11,7 @@ interface IProps {
 
 const EventPage = ({ selectedEvent }: IProps) => {
   if (!selectedEvent) {
-    return <p>No event found</p>;
+    return <div>loading...</div>;
   }
 
   return (
@@ -54,7 +54,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
 
   return {
     paths,
-    fallback: false,
+    fallback: "blocking", // fallback: 'blocking' 은 build time에 만들어지지 않은 페이지에 대한 요청이 들어왔을 때, 새로운 html을 만들기 전까지 페이지 이동을 blocking 하겠다는 뜻
   };
 };
 

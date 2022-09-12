@@ -35,6 +35,7 @@ export const getStaticProps: GetStaticProps = async () => {
 
   return {
     props: { featuredEvents },
+    revalidate: 60, // next isn't aware of when DB changed. every 60s, revalidate this getFeaturedEvents() async request
   };
 };
 
@@ -44,5 +45,5 @@ export default Home;
  * Link
  * - href: The path or URL to navigate to. This is the only required prop. It can also be an object.
  * - replace: Replace the current history state instead of adding a new url into the stack. Defaults to false.
- *
+ * -
  */
