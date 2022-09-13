@@ -5,6 +5,7 @@ import { ReactQueryDevtools } from "react-query/devtools";
 import { RecoilRoot } from "recoil";
 import { ThemeProvider } from "styled-components";
 import { Layout } from "@components/Layout";
+import Seo from "@components/Seo";
 import GlobalStyles from "styles/GlobalStyles";
 import defaultTheme from "styles/Theme";
 
@@ -18,6 +19,11 @@ const MyApp = ({ Component, pageProps }: AppProps) => {
 
   return (
     <>
+      <Seo
+        title="Nextjs boiler plate"
+        name="viewport"
+        content="initial-scale=1.0, width=device-width"
+      />
       <QueryClientProvider client={queryClient}>
         <RecoilRoot>
           <GlobalStyles />

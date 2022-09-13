@@ -10,7 +10,7 @@
   "editor.codeActionsOnSave": {
     "source.fixAll.eslint": true
   },
-  "window.zoomLevel": 0,
+  "window.zoomLevel": -1,
   "prettier/prettier": [
     "error",
     {

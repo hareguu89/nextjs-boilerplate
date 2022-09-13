@@ -1,5 +1,5 @@
-import { useState, useEffect } from "react";
-import type { GetStaticProps, NextPage } from "next";
+import { useState } from "react";
+import type { GetStaticProps } from "next";
 import Link from "next/link";
 import EventList from "@components/Events/EventList";
 import Seo from "@components/Seo";
@@ -18,7 +18,11 @@ const Home = (props: IProps) => {
 
   return (
     <>
-      <Seo title={"Home"} />
+      <Seo
+        title={"Home"}
+        name="Learning Nextjs is great"
+        content="Explore lots of great feature of Nextjs"
+      />
       <Sidebar />
       <Link href="/login">path</Link>
       <EventList items={featuredEvent} />

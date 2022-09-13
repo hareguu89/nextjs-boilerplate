@@ -20,8 +20,8 @@ function EventLogistics(props: any) {
         <Image
           src={`/${image}`}
           alt={imageAlt}
-          width={100}
-          height={100}
+          width={160}
+          height={160}
           layout="responsive"
         />
       </NImage>
