@@ -5,6 +5,7 @@ import { useMutation } from "react-query";
 import styled from "styled-components";
 import Atoms from "@components/Atoms";
 import Molecules from "@components/molecules";
+import Seo from "@components/Seo";
 import { login, Mutation } from "../../src/services";
 
 type TUser = {
@@ -12,7 +13,7 @@ type TUser = {
   password: string;
 };
 
-const Login = ({ data }: any) => {
+const Login = () => {
   // https://react-query.tanstack.com/reference/useMutation
   const { mutateAsync } = useMutation(login, Mutation);
 
@@ -32,11 +33,11 @@ const Login = ({ data }: any) => {
 
   useEffect(() => {
     emailRef.current?.focus();
-    console.log(data);
   }, []);
 
   return (
     <>
+      <Seo title="Login" />
       <Form onSubmit={handleSubmit(OnSubmit)}>
         <Atoms.Div
           display="flex"
@@ -80,16 +81,6 @@ const Login = ({ data }: any) => {
     </>
   );
 };
-
-export async function getServerSideProps() {
-  // 서버로 API 요청
-  // const res = await fetch(`https://.../data`)
-  // const data = await res.json()
-  const data = "hello";
-
-  // Page 컴포넌트로 data 전달
-  return { props: { data } };
-}
 
 export default Login;
 

@@ -2,6 +2,7 @@ import type { GetStaticPaths, GetStaticProps } from "next";
 import EventContent from "@components/Event-detail/Event-content";
 import EventLogistics from "@components/Event-detail/Event-logistics";
 import EventSummary from "@components/Event-detail/Event-summary";
+import Seo from "@components/Seo";
 import { getEventById, getAllEvents } from "helpers/api-utils";
 import type { IDummy } from "type";
 
@@ -16,6 +17,11 @@ const EventPage = ({ selectedEvent }: IProps) => {
 
   return (
     <>
+      <Seo
+        title={selectedEvent.title}
+        name="description"
+        content={selectedEvent.description}
+      />
       <EventSummary title={selectedEvent.title} />
       <EventLogistics
         date={selectedEvent.date}

@@ -2,6 +2,7 @@ import type { GetServerSideProps } from "next";
 import { useRouter } from "next/router";
 import EventList from "@components/Events/EventList";
 import ResultsTitle from "@components/Events/ResulutTitle";
+import Seo from "@components/Seo";
 import Button from "@components/ui/Button";
 import ErrorAlert from "@components/ui/ErrorAlert";
 import type { IDummy } from "type";
@@ -25,9 +26,18 @@ function FilteredEventsPage({ events, date, hasError }: TFilteredProps) {
   //   return <p className="center">Loading...</p>;
   // }
 
+  const pageContent = (
+    <Seo
+      title="Filtered Events"
+      name="description"
+      content={`All Events ${date.month}/${date.year}`}
+    />
+  );
+
   if (hasError) {
     return (
       <>
+        {pageContent}
         <ErrorAlert>
           <p>Invalid filter. Please adjust your values!</p>
         </ErrorAlert>
@@ -43,6 +53,7 @@ function FilteredEventsPage({ events, date, hasError }: TFilteredProps) {
   if (!filteredEvents || filteredEvents.length === 0) {
     return (
       <>
+        {pageContent}
         <ErrorAlert>
           <p>No events found for the chosen filter!</p>
         </ErrorAlert>
@@ -57,6 +68,7 @@ function FilteredEventsPage({ events, date, hasError }: TFilteredProps) {
 
   return (
     <>
+      {pageContent}
       <ResultsTitle date={resultOfDate} />
       <EventList items={filteredEvents} />
     </>
