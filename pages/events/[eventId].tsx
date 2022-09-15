@@ -2,6 +2,7 @@ import type { GetStaticPaths, GetStaticProps } from "next";
 import EventContent from "@components/Event-detail/Event-content";
 import EventLogistics from "@components/Event-detail/Event-logistics";
 import EventSummary from "@components/Event-detail/Event-summary";
+import Comments from "@components/Input/Comments";
 import Seo from "@components/Seo";
 import { getEventById, getAllEvents } from "helpers/api-utils";
 import type { IDummy } from "type";
@@ -32,6 +33,7 @@ const EventPage = ({ selectedEvent }: IProps) => {
       <EventContent>
         <p>{selectedEvent.description}</p>
       </EventContent>
+      <Comments eventId={selectedEvent.id} />
     </>
   );
 };

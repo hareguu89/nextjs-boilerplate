@@ -16,7 +16,7 @@ const EventItem = (props: IDummy) => {
   return (
     <>
       <Li>
-        <Image src={`/${image}`} alt={id} width={200} height={100} />
+        <Image src={`/${image}`} alt={id} width={200} height={100} priority />
         <Attribute>
           <div>
             <h2>{title}</h2>

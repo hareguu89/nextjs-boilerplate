@@ -16,3 +16,12 @@
 ## What different btw React and Nextjs?
 - Initial 'index.html' is not existed in public folder. Bc, 'Nextjs' allows us to determine When a page should be pre-rendered.
 - when mouse over the `<Link>`, automatically pre-fetching data
+
+## API Route
+
+#### What are API Route?
+- Some websites are about more than just serving pages (not only html, e.g accept ur feedback submission, newsletter, signups ...)
+#### Adding & Using API routes
+
+#### Working with Request & Response
+
