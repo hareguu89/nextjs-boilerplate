@@ -6,7 +6,7 @@ type TUser = {
   password: string;
 };
 
-export const login = async (params: TUser) => axios.post("/login", params);
+export const login = async (params: TUser) => axios.post("/api/login", params);
 
 export const Mutation = {
   onSuccess: (data: AxiosResponse, variables: TUser) => {

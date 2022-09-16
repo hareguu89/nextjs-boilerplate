@@ -23,6 +23,7 @@ function EventLogistics(props: any) {
           width={160}
           height={160}
           layout="responsive"
+          priority
         />
       </NImage>
       <List>

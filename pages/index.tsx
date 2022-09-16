@@ -2,6 +2,7 @@ import { useState } from "react";
 import type { GetStaticProps } from "next";
 import Link from "next/link";
 import EventList from "@components/Events/EventList";
+import NewsletterRegistration from "@components/Input/NewsletterRegistration";
 import Seo from "@components/Seo";
 import Sidebar from "@components/Sidebar";
 import { getFeaturedEvents } from "helpers/api-utils";
@@ -24,7 +25,9 @@ const Home = (props: IProps) => {
         content="Explore lots of great feature of Nextjs"
       />
       <Sidebar />
-      <Link href="/login">path</Link>
+      {/* <Link href="/login">path</Link> */}
+
+      <NewsletterRegistration />
       <EventList items={featuredEvent} />
     </>
   );
