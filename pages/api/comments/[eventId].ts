@@ -1,39 +1,68 @@
 import type { NextApiRequest, NextApiResponse } from "next";
+import type { ObjectId } from "mongodb";
+import {
+  connectDatabase,
+  insertDocument,
+  getAllDocument,
+} from "../../../helpers/api-utils";
 
-const handlers = (req: NextApiRequest, res: NextApiResponse) => {
+export interface IComments {
+  _id?: ObjectId;
+  email: string;
+  name: string;
+  text: string;
+  eventId: string | string[];
+}
+
+const handlers = async (req: NextApiRequest, res: NextApiResponse) => {
   const { eventId } = req.query;
-  console.log(eventId);
+  let client;
+  try {
+    client = await connectDatabase("events");
+  } catch (e) {
+    res.status(500).json({ message: "Connectng to the database failed" });
+
+    return;
+  }
+
+  const db = client.db();
   if (req.method === "POST") {
-    // add serverside validation
     const { email, name, text } = req.body;
-    // if (
-    //   !email.includes("@") ||
-    //   !name ||
-    //   name.trim() === "" ||
-    //   !text ||
-    //   text.trim() === ""
-    // ) {
-    //   res.status(422).json({ message: "Invalid Input." });
 
-    //   return;
-    // }
-
-    const newComment = {
-      id: new Date().toISOString(),
+    const newComment: IComments = {
       email,
       name,
       text,
+      eventId,
     };
-    res.status(201).json({ message: "Added Comment", comment: newComment });
-  }
-  if (req.method === "GET") {
-    //
-    const dummyList = [
-      { id: "c1", name: "Max", comment: "Arabian Night" },
-      { id: "c2", name: "Manuel", comment: "a second text" },
-    ];
 
-    res.status(200).json({ comments: dummyList });
+    try {
+      const response = await insertDocument({
+        client,
+        collection: "comments",
+        data: newComment,
+      });
+
+      newComment._id = response?.insertedId;
+
+      res.status(201).json({ message: "Added Comment", comment: newComment });
+    } catch {
+      res.status(500).json({ message: "Inserting Comment Failed!" });
+    }
+  }
+
+  if (req.method === "GET") {
+    try {
+      const documents = await getAllDocument({
+        db,
+        collection: "comments",
+        sort: { _id: -1 },
+      });
+
+      res.status(200).json({ comments: documents });
+    } catch {
+      res.status(500).json({ message: "Getting Comment Failed!" });
+    }
   }
 };
 

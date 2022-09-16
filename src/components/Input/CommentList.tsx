@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-type Comment = { id: string; name: string; comment: string };
+type Comment = { _id: string; name: string; text: string };
 interface IComments {
   comments: Comment[];
 }
@@ -10,8 +10,8 @@ function CommentList({ comments }: IComments) {
     <Comments>
       {/* Render list of comments - fetched from API */}
       {comments.map(el => (
-        <li key={el.id}>
-          <p>{el.comment}</p>
+        <li key={el._id}>
+          <p>{el.text}</p>
           <div>
             By <address>{el.name}</address>
           </div>

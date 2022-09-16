@@ -1,5 +1,8 @@
 import type { AxiosResponse } from "axios";
 import axios from "axios";
+import type { Db, SortDirection, ObjectId } from "mongodb";
+import { MongoClient } from "mongodb";
+import type { IComments } from "pages/api/comments/[eventId]";
 import type { IDummy, IEvents } from "type";
 
 export const getAllEvents = async () => {
@@ -52,4 +55,36 @@ export const getFilteredEvents = async (dateFilter: Tdate) => {
   });
 
   return filteredEvents;
+};
+
+export const connectDatabase = async (collection: string) => {
+  const client = await MongoClient.connect(
+    `mongodb+srv://hareguu89:nextjs@cluster0.jpi0lwq.mongodb.net/${collection}?retryWrites=true&w=majority`,
+  );
+
+  return client;
+};
+
+interface IInsert {
+  client: MongoClient | undefined;
+  collection: string;
+  data: IComments | { [key: string]: string };
+}
+
+export const insertDocument = async ({ client, collection, data }: IInsert) => {
+  const db = client?.db();
+  const response = await db?.collection(collection).insertOne(data);
+
+  return response;
+};
+
+interface IDocument {
+  db: Db;
+  collection: string;
+  sort: { [key: string]: SortDirection };
+}
+export const getAllDocument = async ({ db, collection, sort }: IDocument) => {
+  const documents = await db.collection(collection).find().sort(sort).toArray();
+
+  return documents;
 };

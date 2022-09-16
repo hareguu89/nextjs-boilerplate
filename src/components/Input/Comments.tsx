@@ -7,9 +7,9 @@ import CommentList from "./CommentList";
 import NewComment from "./NewComment";
 
 export interface IComments {
-  id: string;
+  _id: string;
   name: string;
-  comment: string;
+  text: string;
 }
 
 interface IProps {
@@ -48,6 +48,7 @@ function Comments(props: IProps) {
         `/api/comments/${eventId}`,
         commentData,
       );
+      console.log("data from comments", data);
       if (data) {
         toast.success(data.message);
       }

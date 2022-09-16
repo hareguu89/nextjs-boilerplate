@@ -20,6 +20,7 @@ const NewsletterRegistration: NextPage = () => {
       const { data }: IPostData = await axios.post("/api/newsletter", {
         email: emailRef.current?.value,
       });
+      console.log(data);
 
       toast.success(data.message);
     } catch (e) {
