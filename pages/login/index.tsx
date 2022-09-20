@@ -4,7 +4,7 @@ import { useForm } from "react-hook-form";
 import { useMutation } from "react-query";
 import styled from "styled-components";
 import Atoms from "@components/Atoms";
-import Molecules from "@components/molecules";
+import Molecules from "@components/Molecules";
 import Seo from "@components/Seo";
 import { login, Mutation } from "../../src/services";
 
