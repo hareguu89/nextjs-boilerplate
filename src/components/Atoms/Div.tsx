@@ -26,9 +26,7 @@ const Div = styled.div<React.CSSProperties>`
   ${({ marginRight }) => marginRight && `margin-right : ${marginRight}`};
   ${({ marginBottom }) => marginBottom && `margin-bottom : ${marginBottom}`};
   ${({ marginLeft }) => marginLeft && `margin-left : ${marginLeft}`};
-  padding: ${({ padding }) => {
-    return padding;
-  }};
+  padding: ${({ padding }) => padding};
   ${({ paddingTop }) => paddingTop && `padding-top : ${paddingTop}`};
   ${({ paddingRight }) => paddingRight && `padding-right : ${paddingRight}`};
   ${({ paddingBottom }) =>
