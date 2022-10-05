@@ -54,6 +54,7 @@ const Login = () => {
     <>
       <Seo title="Login" />
       <div>{session?.user?.name}</div>
+      <div>{session?.expires}</div>
       <div>{status}</div>
       <Form onSubmit={handleSubmit(OnSubmit)}>
         <Atoms.Div
