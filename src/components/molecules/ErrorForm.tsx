@@ -1,6 +1,6 @@
 import type { ReactNode } from "react";
 import styled from "styled-components";
-import Atoms from "@components//Atoms";
+import Atoms from "@components/Atoms";
 
 interface IError {
   children: ReactNode;

@@ -1,4 +1,5 @@
 import { useEffect, useRef } from "react";
+import { useSession, signIn, signOut } from "next-auth/react";
 import type { SubmitHandler } from "react-hook-form";
 import { useForm } from "react-hook-form";
 import { useMutation } from "react-query";
@@ -17,6 +18,8 @@ const Login = () => {
   // https://react-query.tanstack.com/reference/useMutation
   const { mutateAsync } = useMutation(login, Mutation);
 
+  const { data: session, status } = useSession({ required: false });
+
   const {
     register,
     handleSubmit,
@@ -29,15 +32,29 @@ const Login = () => {
     pattern: /^\S+@\S+$/i,
   });
 
-  const OnSubmit: SubmitHandler<TUser> = auth => mutateAsync(auth);
+  const OnSubmit: SubmitHandler<TUser> = auth => {
+    // console.log(auth);
+    signIn("email-password-credential", {
+      email: auth.email,
+      password: auth.password,
+      redirect: false,
+    });
+    // mutateAsync(auth);
+  };
 
   useEffect(() => {
     emailRef.current?.focus();
   }, []);
 
+  useEffect(() => {
+    console.log(session);
+  }, [session]);
+
   return (
     <>
       <Seo title="Login" />
+      <div>{session?.user?.name}</div>
+      <div>{status}</div>
       <Form onSubmit={handleSubmit(OnSubmit)}>
         <Atoms.Div
           display="flex"
@@ -78,11 +95,16 @@ const Login = () => {
           <Atoms.Input type="submit" designType="submit" value="로그인" />
         </Atoms.Div>
       </Form>
+      <button onClick={() => signOut()}> 로그아웃 </button>
     </>
   );
 };
 
 export default Login;
+
+Login.getLayout = function getLayout(page: any) {
+  return <div>{page}</div>;
+};
 
 const Form = styled.form`
   width: 100%;

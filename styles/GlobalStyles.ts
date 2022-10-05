@@ -14,7 +14,8 @@ const globalStyles = createGlobalStyle`
         font-family: "Spoqa Han Sans Neo";
         font-size: 2rem;
         color: black;
-        background-color: #1a202c;
+        background-color: white;
+        /* background-color: #1a202c; */
     }
 `;
 
