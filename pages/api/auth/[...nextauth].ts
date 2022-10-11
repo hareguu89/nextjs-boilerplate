@@ -1,25 +1,18 @@
-import axios from "axios";
 import dayjs from "dayjs";
 import jwtDecode from "jwt-decode";
 import type { NextAuthOptions } from "next-auth";
 import NextAuth from "next-auth";
+import type { JWT } from "next-auth/jwt";
 import CredentialsProvider from "next-auth/providers/credentials";
-import type { IResponse, IAuthToken } from "type";
+import ApiClient from "@utils/interceptor";
+import type { IResponse } from "types";
 
-async function refreshAccessToken(tokenObject: any) {
+async function refreshAccessToken(tokenObject: JWT) {
   try {
-    const instance = axios.create({
-      baseURL: process.env.NEXT_PUBLIC_API_URL,
-      headers: {
-        Authorization: `Bearer ${tokenObject.accessToken}`,
-        Refresh: `Bearer ${tokenObject.refreshToken}`,
-      },
-    });
-
     // Get a new set of tokens with a refreshToken
     const {
       data: { jwtToken, refreshToken },
-    } = await instance.post("/refresh");
+    } = await ApiClient.post("/refresh");
 
     const decodeToken: IResponse = jwtDecode(jwtToken);
 
@@ -40,6 +33,10 @@ async function refreshAccessToken(tokenObject: any) {
 const authOptions: NextAuthOptions = {
   session: {
     strategy: "jwt",
+    maxAge: 60 * 60 * 24 * 5, // 5days expire session
+  },
+  jwt: {
+    maxAge: 60, // 5days of expiration of json web token
   },
   secret: process.env.JWT_SECRET,
   providers: [
@@ -54,10 +51,7 @@ const authOptions: NextAuthOptions = {
         try {
           const {
             data: { jwtToken, refreshToken },
-          } = await axios.post(
-            "https://hive-test2.azurewebsites.net:443/v1.1/sign-in",
-            credentials,
-          );
+          } = await ApiClient.post(`sign-in`, credentials);
           const decodeToken: IResponse = jwtDecode(jwtToken);
 
           if (jwtToken) {
@@ -84,6 +78,7 @@ const authOptions: NextAuthOptions = {
     async jwt({ token, user }) {
       const expireDate = (token?.accessTokenExpiry as number) * 1000;
       const now = Date.now();
+
       if (expireDate <= now) {
         return {
           ...token,
@@ -97,30 +92,22 @@ const authOptions: NextAuthOptions = {
         ...token,
       });
     },
-    async session({ session, token }: any) {
+    async session({ session, user, token }) {
       if (session && token) {
         session = {
           ...session,
           accessToken: token.accessToken,
           refreshToken: token.refreshToken,
-          companyId: token.companyId,
-          warehouseList: token.warehouseList,
-          expires: token.accessTokenExpiry,
+          user: {
+            ...user,
+            name: token.name,
+            companyId: token.companyId,
+            warehouseList: token.warehouseList,
+          },
         };
       }
 
       return Promise.resolve(session);
-    },
-
-    async signIn(params: any) {
-      if (params.user.accessToken) {
-        return true;
-      } else {
-        return false;
-        // Return false to display a default error message
-        // Or you can return a URL to redirect to:
-        // return '/unauthorized'
-      }
     },
   },
   pages: {

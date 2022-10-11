@@ -30,6 +30,7 @@
 			"@common/*": ["./src/common/*"],
 			"@store/*": ["./src/store/*"],
 			"@mocks/*": ["./src/mocks/*"],
+			"@utils/*": ["./utils/*"],
 		},
 		"forceConsistentCasingInFileNames": true,
 		"noEmit": true,
