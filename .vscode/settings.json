@@ -1,20 +1,10 @@
 {
-  "editor.formatOnSave": true,
-  "[javascript]": {
-    "editor.formatOnSave": false
-  },
-  // "eslint.autoFixOnSave": true,
-  // "prettier.disableLanguages": ["js"],
-  "eslint.alwaysShowStatus": true,
-  // "files.autoSave": "onFocusChange",
-  "editor.codeActionsOnSave": {
-    "source.fixAll.eslint": true
-  },
-  "window.zoomLevel": 0,
-  "prettier/prettier": [
-    "error",
-    {
-      "endOfLine": "auto"
+  "[typescript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "editor.codeActionsOnSave": {
+      "source.fixAll": true,
+      "source.organizeImports": true
     }
-  ]
+  },
+  "svg.preview.background": "dark-transparent"
 }

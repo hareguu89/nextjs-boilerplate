@@ -1,6 +1,6 @@
 import type { CSSProperties } from "styled-components";
 import styled from "styled-components";
-import Theme from "../../../styles/Theme";
+import Theme from "../../styles/Theme";
 
 const designList = {
   submit: `

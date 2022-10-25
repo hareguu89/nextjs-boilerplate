@@ -1,40 +1,26 @@
-export interface IResponse {
-  companyId: number;
-  companyUserId: number;
-  companyUserName: string;
-  username: string;
-  roles: string;
-  lnbData: {
-    receiving: Receiving;
-    shipping: Receiving;
-    stock: Receiving;
-    mdm: Receiving;
-  };
-  warehouseList: {
-    warehouseId: number;
-    warehouseName: string;
-  }[];
-  iat: number;
-  exp: number;
+export type BrandType = {
+  id: number;
+  name: Name;
+  logo: string;
+  open: boolean;
+  createdAt: string;
+  updatedAt: string;
+  supplyMemo: string;
+  description: string;
+  country: Country;
+  homepageUrl: string;
+  repEmail: string;
+};
+
+interface Name {
+  KR: string;
+  EN: string;
 }
 
-interface Receiving {
-  isActive: boolean;
-}
-
-export interface IAuthToken {
-  token: { name: string };
-  user?: {
-    accessToken: string;
-    refreshToken: string;
-    accessTokenExpiry: string;
-    name: string;
-    companyId: number;
-    warehouseList: { warehouseId: number; warehouseName: string }[];
-  };
-  account?: {
-    type: string;
-    provider: string;
-  };
-  isNewUser?: boolean;
+interface Country {
+  id: number;
+  name: string;
+  callingCode: number;
+  code: string;
+  emoji: string;
 }

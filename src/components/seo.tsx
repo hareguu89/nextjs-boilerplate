@@ -6,15 +6,15 @@ interface IProps {
   content?: string;
 }
 
-function Seo({ title, name, content }: IProps) {
+const Seo = ({ title, name, content }: IProps) => {
   return (
     <>
       <Head>
-        <title>{title} | Nextjs BoilerPlate</title>
+        <title>{title}</title>
         <meta name={name} content={content} />
       </Head>
     </>
   );
-}
+};
 
 export default Seo;

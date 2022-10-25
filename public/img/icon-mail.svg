@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16">
+  <g id="그룹_1" data-name="그룹 1" transform="translate(-656 370)">
+    <rect id="사각형_2" data-name="사각형 2" width="16" height="16" transform="translate(656 -370)" fill="none"/>
+    <g id="icon-mail" transform="translate(653.333 -369.333)">
+      <path id="패스_2" data-name="패스 2" d="M15.167,2.333H5.834A1.165,1.165,0,0,0,4.673,3.5l-.006,7a1.17,1.17,0,0,0,1.167,1.167h9.333A1.17,1.17,0,0,0,16.334,10.5v-7A1.17,1.17,0,0,0,15.167,2.333ZM5.834,4.667,10.5,7.583l4.667-2.917V10.5H5.834Zm0-1.167L10.5,6.417,15.167,3.5Z" fill="#fff" fill-rule="evenodd"/>
+    </g>
+  </g>
+</svg>

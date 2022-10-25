@@ -1,29 +1,31 @@
-// import { useEffect } from "react";
-// import Router from "next/router";
-import { useSession } from "next-auth/react";
+import { ToastContainer } from "react-toastify";
+import styled from "styled-components";
+import Footer from "./Footer";
 import NavBar from "./Nav";
+import TopBar from "./TopBar";
 
 interface LayoutProps {
   children: React.ReactNode;
 }
 
-export default function Layout({ children }: LayoutProps) {
-  // const { data, status } = useSession({
-  //   required: true,
-  // });
-  // useEffect(() => {
-  //   console.log(status);
-  //   if (!data) {
-  //     Router.push("/login");
-  //   }
-  // }, [data]);
-
+const Layout = ({ children }: LayoutProps) => {
   return (
     <>
-      <div>
+      <NavContainer>
+        <ToastContainer limit={3} />
+        <TopBar />
         <NavBar />
-        <div>{children}</div>
-      </div>
+      </NavContainer>
+      {children}
+      <Footer />
     </>
   );
-}
+};
+
+export default Layout;
+
+const NavContainer = styled.div`
+  position: sticky;
+  top: 0;
+  z-index: 99;
+`;
